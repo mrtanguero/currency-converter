@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Dropdown from "./components/Dropdown";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const options = [
+  {
+    currency: "Euro",
+    code: "EUR",
+  },
+  {
+    currency: "US Dollar",
+    code: "USD",
+  },
+  {
+    currency: "British Pound",
+    code: "GBP",
+  },
+  {
+    currency: "Serbian Dinar",
+    code: "RSD",
+  },
+];
+export default class App extends Component {
+  state = {
+    amount: "",
+    from: "EUR",
+    to: "USD",
+  };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  handleChangeFrom = (e) => {
+    this.setState({ from: e.target.value });
+  };
+
+  handleChangeTo = (e) => {
+    this.setState({ to: e.target.value });
+  };
+
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          value={this.state.amount}
+          onChange={(e) => {
+            this.setState({ amount: e.target.value });
+          }}
+          placeholder="Enter the amount"
+        />
+        <Dropdown
+          options={options}
+          label="From"
+          selected={this.state.from}
+          onChange={this.handleChangeFrom}
+        />
+        <Dropdown
+          options={options}
+          label="To"
+          selected={this.state.to}
+          onChange={this.handleChangeTo}
+        />
+      </div>
+    );
+  }
 }
-
-export default App;

@@ -1,26 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Dropdown extends Component {
-  renderOptions = (options) => {
-    return options.map((cur, i) => {
-      return (
-        <option key={i} value={cur.code}>
-          {cur.currency}
-        </option>
-      );
-    });
-  };
-
-  render() {
+export default function Dropdown({ options, label, onChange, selected }) {
+  const optionList = options.map((cur, i) => {
     return (
-      <div>
-        <label>
-          {this.props.label}
-          <select onChange={this.props.onChange} value={this.props.selected}>
-            {this.renderOptions(this.props.options)}
-          </select>
-        </label>
-      </div>
+      <option key={i} value={cur.code}>
+        {cur.currency}
+      </option>
     );
-  }
+  });
+
+  return (
+    <div>
+      <label>
+        {label}
+        <select onChange={onChange} value={selected}>
+          {optionList}
+        </select>
+      </label>
+    </div>
+  );
 }

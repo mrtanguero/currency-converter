@@ -24,8 +24,10 @@ export default class App extends Component {
     amount: "",
     from: "EUR",
     to: "USD",
+    result: 0,
   };
 
+  // TODO: Samo za debugging, ne zaboravi da ukloniš
   componentDidUpdate() {
     console.log(this.state);
   }
@@ -36,6 +38,14 @@ export default class App extends Component {
 
   handleChangeTo = (e) => {
     this.setState({ to: e.target.value });
+  };
+
+  fetchResult = async () => {
+    const response = await fetch(
+      `http://data.fixer.io/api/latest?access_key=b92aa59d3778c66ab0bf76f8eca3a032&base=${this.state.from}&symbols=${this.state.to}`
+    );
+    const data = await response.json();
+    this.setState({ result: this.state.amount * data.rates[this.state.to] });
   };
 
   render() {
@@ -61,6 +71,11 @@ export default class App extends Component {
           selected={this.state.to}
           onChange={this.handleChangeTo}
         />
+        <button onClick={this.fetchResult}>Convert</button>
+        <p>
+          {this.state.amount} {this.state.from} = {this.state.result}{" "}
+          {this.state.to}
+        </p>
       </div>
     );
   }

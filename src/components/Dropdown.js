@@ -10,13 +10,15 @@ export default function Dropdown({ options, label, onChange, selected }) {
   });
 
   return (
-    <div>
-      <label>
-        {label}
-        <select onChange={onChange} value={selected}>
-          {optionList}
-        </select>
-      </label>
+    <div className="field">
+      <label>{label}</label>
+      <select
+        className="ui fluid dropdown"
+        onChange={onChange}
+        value={selected}
+      >
+        {optionList}
+      </select>
     </div>
   );
 }

@@ -1,6 +1,11 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ui.form.container {
   width: 500px;
-  margin: 10vh auto;
   padding: 30px 100px;
 
   background-color: whitesmoke;

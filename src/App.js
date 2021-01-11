@@ -30,11 +30,6 @@ export default class App extends Component {
     result: null,
   };
 
-  // TODO: Samo za debugging, ne zaboravi da ukloniš
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   handleChangeFrom = (e) => {
     this.setState({ from: e.target.value });
   };
@@ -45,7 +40,7 @@ export default class App extends Component {
 
   fetchResult = async () => {
     if (this.state.amount === "") return;
-    if (Number.isNaN(parseFloat(this.state.amount))) {
+    if (Number.isNaN(Number(this.state.amount))) {
       this.setState({ result: NaN });
       return;
     }
@@ -75,6 +70,10 @@ export default class App extends Component {
             onChange={(e) => {
               if (this.state.result !== null) this.setState({ result: null });
               this.setState({ amount: e.target.value });
+            }}
+            onKeyUp={(e) => {
+              console.log(e);
+              if (e.key === "Enter") this.fetchResult();
             }}
             placeholder="Enter the amount"
           />

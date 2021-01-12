@@ -2,4 +2,4 @@
 
 Konvertor valuta
 
-Live demo:
+Live demo: https://mrtanguero.github.io/currency-converter/

@@ -72,7 +72,6 @@ export default class App extends Component {
               this.setState({ amount: e.target.value });
             }}
             onKeyUp={(e) => {
-              console.log(e);
               if (e.key === "Enter") this.fetchResult();
             }}
             placeholder="Enter the amount"

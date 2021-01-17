@@ -40,7 +40,7 @@ export default class App extends Component {
 
   fetchResult = async () => {
     if (this.state.amount === "") return;
-    if (Number.isNaN(Number(this.state.amount))) {
+    if (Number.isNaN(Number(this.state.amount)) || this.state.amount <= 0) {
       this.setState({ result: NaN });
       return;
     }
